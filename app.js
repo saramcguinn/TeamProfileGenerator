@@ -10,9 +10,81 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 
+let employees = [];
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
+function getEmployeeInfo() {
+    inquirer.prompt([
+        {
+            type: "input",
+            name: "name",
+            message: "Employee name:"
+        },
+        {
+            type: "input",
+            name: "email",
+            message: "Employee email:"
+        },
+        {
+            type: "input",
+            name: "id",
+            message: "Employee ID number:"
+        },
+        {
+            type: "list",
+            name: "role",
+            message: "Employee role:",
+            choices: ["Manager", "Engineer", "Intern"]
+        },
+        {
+            type: "input",
+            name: "officeNumber",
+            message: "Manager's office number:",
+            when: (answers) => answers.role === "Manager"
+        },
+        {
+            type: "input",
+            name: "github",
+            message: "Engineer's GitHub username:",
+            when: (answers) => answers.role === "Engineer"
+        },
+        {
+            type: "input",
+            name: "school",
+            message: "Intern's school:",
+            when: (answers) => answers.role === "Intern"
+        }
+    ])
+    .then((answers) => {
+        employees.push(answers);
+        console.log(employees);
+        moreEmployees();
+    });
+}
+
+function moreEmployees() {
+    inquirer.prompt([
+        {
+            type: "list",
+            name: "moreEmployees",
+            message: "Would you like to add another employee?",
+            choices: ["Yes", "No"]
+        }
+    ])
+    .then((response) => {
+        if (response.moreEmployees === "Yes") {
+            getEmployeeInfo();
+        } else {
+            render(employees);
+        }
+    });
+}
+
+
+getEmployeeInfo();
+
+
 
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
