@@ -59,15 +59,15 @@ function getEmployeeInfo() {
     .then((answers) => {
         switch(answers.role) {
             case "Manager":
-                let newManager = new Manager(answers.name, answers.id, answers.email, answers.role, answers.officeNumber);
+                let newManager = new Manager(answers.name, answers.id, answers.email, answers.officeNumber);
                 employees.push(newManager);
                 break;
             case "Engineer":
-                let newEngineer = new Engineer(answers.name, answers.id, answers.email, answers.role, answers.github);
+                let newEngineer = new Engineer(answers.name, answers.id, answers.email, answers.github);
                 employees.push(newEngineer);
                 break;
             case "Intern":
-                let newIntern = new Intern(answers.name, answers.id, answers.email, answers.role, answers.school);
+                let newIntern = new Intern(answers.name, answers.id, answers.email, answers.school);
                 employees.push(newIntern);
                 break;
         }
@@ -88,7 +88,10 @@ function addEmployee() {
         if (response.addEmployee === "Yes") {
             getEmployeeInfo();
         } else {
-            render(employees);
+            let html = render(employees);
+            fs.writeFile(outputPath, html, (err) => {
+                if (err) throw err;
+            });
         }
     });
 }
