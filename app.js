@@ -57,23 +57,35 @@ function getEmployeeInfo() {
         }
     ])
     .then((answers) => {
-        employees.push(answers);
-        console.log(employees);
-        moreEmployees();
+        switch(answers.role) {
+            case "Manager":
+                let newManager = new Manager(answers.name, answers.id, answers.email, answers.role, answers.officeNumber);
+                employees.push(newManager);
+                break;
+            case "Engineer":
+                let newEngineer = new Engineer(answers.name, answers.id, answers.email, answers.role, answers.github);
+                employees.push(newEngineer);
+                break;
+            case "Intern":
+                let newIntern = new Intern(answers.name, answers.id, answers.email, answers.role, answers.school);
+                employees.push(newIntern);
+                break;
+        }
+        addEmployee();
     });
 }
 
-function moreEmployees() {
+function addEmployee() {
     inquirer.prompt([
         {
             type: "list",
-            name: "moreEmployees",
+            name: "addEmployee",
             message: "Would you like to add another employee?",
             choices: ["Yes", "No"]
         }
     ])
     .then((response) => {
-        if (response.moreEmployees === "Yes") {
+        if (response.addEmployee === "Yes") {
             getEmployeeInfo();
         } else {
             render(employees);
