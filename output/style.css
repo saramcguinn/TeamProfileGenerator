@@ -1,0 +1,36 @@
+h1 {
+    font-weight: bolder;
+}
+
+#heading-text {
+    background-color: white;
+}
+
+.jumbotron {
+    background-image: url(../assets/icon-background.jpg);
+}
+
+.employee-card {
+    margin: 20px;
+    width: 18rem;
+}
+
+.card-header > h2 {
+    font-weight: bolder;
+}
+
+.manager-card-header {
+    background-color: steelblue;
+}
+
+.manager-card-header > h2 {
+    color: white;
+}
+
+.engineer-card-header {
+    background-color: skyblue;
+}
+
+.intern-card-header {
+    background-color: mediumaquamarine;
+}
