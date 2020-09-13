@@ -12,7 +12,7 @@ HTML in browser:
 
 <img src="assets/html-screenshot.jpg" width=400>
 
-For a brief demo video, see https://drive.google.com/file/d/1WLA1wegDDQY8ihx-IRQXdDrlwiXzzsTM/view.
+For a brief demo video, see https://drive.google.com/file/d/1p4v7mUq8MesWngYWDFxAnqhAW1yQzcMO/view.
 
 ---
 
